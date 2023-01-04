@@ -1,0 +1,59 @@
+﻿@model MyBookShelf.Web.Models.LoginViewModel
+@{
+    ViewData["Title"] = "My BookShelf App";
+    ViewBag.Header = "My BookShelf App";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body>
+<form asp-action="Login" method="post" class="form-control-sm" style="align-content: center; width: 50%; height: 50%" id="frmLogin">
+    <h5 class="bg-primary text-white text-center m-2 p-2">@ViewBag.Header</h5>
+    <div class="row m-1">
+        <div class="col-3">
+            <label asp-for="UserName" class="form-label">@Model.UserName</label>
+        </div>
+        <div class="col-7">
+            <input asp-for="UserName" class="form-control" id="txtUserName"/>
+        </div>
+        <div class="col-2">
+            <span asp-validation-for="UserName" class="text-danger" style="font-weight: bold"></span>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-3">
+            <label asp-for="Password" class="form-label">@Model.Password</label>
+        </div>
+        <div class="col-7">
+            <input asp-for="Password" class="form-control" id="txtPassword" type="password"/>
+        </div>
+        <div class="col-2">
+            <span asp-validation-for="Password" class="text-danger" style="font-weight: bold"></span>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-6"></div>
+        @* This is used to go back to the main page *@
+        <div class="col-2">
+            <a asp-controller="Home" asp-action="Login">
+                <input type="button" class="btn btn-danger" value="Clean"/>
+            </a>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary" type="submit" id="btnSearch">Login</button>
+        </div>
+    </div>
+</form>
+<br/>
+<br/>
+</body>
+</html>
