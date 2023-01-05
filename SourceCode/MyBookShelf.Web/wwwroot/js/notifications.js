@@ -175,7 +175,7 @@ var Lobibox = Lobibox || {};
                 $body.prepend('<div class="lobibox-notify-title">' + me.$options.title + '<div>');
             }
             _addCloseButton($notify);
-            // burada týklandýðýnda kapanmasý için gerekli düzenlemeler yapýlýyor
+            // burada tï¿½klandï¿½ï¿½ï¿½nda kapanmasï¿½ iï¿½in gerekli dï¿½zenlemeler yapï¿½lï¿½yor
             if (me.$options.size === 'normal' || me.$options.size === 'mini' || me.$options.size === 'large' || me.$options.size === 'awesome') {
                 _addCloseOnClick($notify);
                 _addDelay($notify);
@@ -405,19 +405,19 @@ var Lobibox = Lobibox || {};
         onClick: null
     };
     //This variable is necessary.
-    // large boyutunda sadece hata mesajlarý gösterildiðinden
-    // title özelliði güncellendi
+    // large boyutunda sadece hata mesajlarï¿½ gï¿½sterildiï¿½inden
+    // title ï¿½zelliï¿½i gï¿½ncellendi
     Lobibox.notify.OPTIONS = {
         'class': 'animated-fast',
         large: {
             width: 500,
             messageHeight: 96,
-            'title': 'Hata'
+            'title': 'Error'
         },
         awesome: {
             width: 500,
             messageHeight: 96,
-            'title': 'Durum'
+            'title': 'Situation'
         },
         mini: {
             'class': 'notify-mini',
@@ -430,22 +430,22 @@ var Lobibox = Lobibox || {};
         },
         success: {
             'class': 'lobibox-notify-success',
-            'title': 'Tebrikler',
+            'title': 'Success',
             sound: 'sound2'
         },
         error: {
             'class': 'lobibox-notify-error',
-            'title': 'Hata',
+            'title': 'Error',
             sound: 'sound4'
         },
         warning: {
             'class': 'lobibox-notify-warning',
-            'title': 'Dikkat',
+            'title': 'Warning',
             sound: 'sound5'
         },
         info: {
             'class': 'lobibox-notify-info',
-            'title': 'Bilgi',
+            'title': 'Info',
             sound: 'sound6'
         },
         icons: {
