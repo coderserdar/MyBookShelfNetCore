@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "6X1ook/sEw1Vv8Lb0m/YiqIxTrjWkG/5pojKrpMRhCcdOOg2fFZFvs76Di8wb85MpUPF3CTFz47Z7pV8v1pwWw==",
+  "dgSpecHash": "9A0C7SaMfImHRmrUHESyIbHut5ZIw8D0JRmseV08jzfnvRb4aJUw2ESGFLznBP+tYcyCIvOZJX97UK9PkULOHQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\serda\\Documents\\GitHub\\MyBookShelfNetCore\\SourceCode\\MyBookShelf.Web\\MyBookShelf.Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\serda\\.nuget\\packages\\jquery\\1.4.4\\jquery.1.4.4.nupkg.sha512",
+    "C:\\Users\\serda\\.nuget\\packages\\jquery.validation\\1.19.5\\jquery.validation.1.19.5.nupkg.sha512",
     "C:\\Users\\serda\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.1\\microsoft.data.sqlite.core.7.0.1.nupkg.sha512",
     "C:\\Users\\serda\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.1\\microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
     "C:\\Users\\serda\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.1\\microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",

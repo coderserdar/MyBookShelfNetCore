@@ -10,10 +10,17 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.1",
           "MyBookShelf.Business": "1.0.0",
-          "MyBookShelf.Data": "1.0.0"
+          "MyBookShelf.Data": "1.0.0",
+          "jQuery.Validation": "1.19.5"
         },
         "runtime": {
           "MyBookShelf.Web.dll": {}
+        }
+      },
+      "jQuery/1.4.4": {},
+      "jQuery.Validation/1.19.5": {
+        "dependencies": {
+          "jQuery": "1.4.4"
         }
       },
       "Microsoft.Data.Sqlite.Core/7.0.1": {
@@ -433,6 +440,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "jQuery/1.4.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kexCeYIZehR5fRjo8CK1sngN5SZEQRFNfCYZHMS1RxwEEiSKetBw/gliYJcLJdJEBB+e9aHqleLCjuaSI7u23g==",
+      "path": "jquery/1.4.4",
+      "hashPath": "jquery.1.4.4.nupkg.sha512"
+    },
+    "jQuery.Validation/1.19.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lBHoaszLpKYxiVCWwIoxdqSCrlqnW9jeVMinMQ0uNMFcl3rmY8XyeaerfGLRbkVRUzh/fM3APaKepEezrR5AcA==",
+      "path": "jquery.validation/1.19.5",
+      "hashPath": "jquery.validation.1.19.5.nupkg.sha512"
     },
     "Microsoft.Data.Sqlite.Core/7.0.1": {
       "type": "package",

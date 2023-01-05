@@ -26,10 +26,13 @@
             <div class="col-3">
                 <label asp-for="UserName" class="form-label">@Model.UserName</label>
             </div>
-            <div class="col-7">
+            <div class="col-9">
                 <input asp-for="UserName" class="form-control" id="txtUserName"/>
             </div>
-            <div class="col-2">
+        </div>
+        <div class="row m-1">
+            <div class="col-3"></div>
+            <div class="col-9">
                 <span asp-validation-for="UserName" class="text-danger" style="font-weight: bold"></span>
             </div>
         </div>
@@ -37,15 +40,18 @@
             <div class="col-3">
                 <label asp-for="Password" class="form-label">@Model.Password</label>
             </div>
-            <div class="col-7">
+            <div class="col-9">
                 <input asp-for="Password" class="form-control" id="txtPassword" type="password"/>
             </div>
-            <div class="col-2">
+        </div>
+        <div class="row m-1">
+            <div class="col-3"></div>
+            <div class="col-9">
                 <span asp-validation-for="Password" class="text-danger" style="font-weight: bold"></span>
             </div>
         </div>
         <div class="row m-1">
-            <div class="col-6"></div>
+            <div class="col-8"></div>
             @* This is used to go back to the main page *@
             <div class="col-2">
                 <a asp-controller="Home" asp-action="Login">
