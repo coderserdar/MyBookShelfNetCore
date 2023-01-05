@@ -34,7 +34,7 @@ public class HomeController : Controller
         if (ModelState.IsValid)
         {
             var user = from m in _context.Users select m;
-            user = user.Where(s => s.UserName.Contains(model.UserName));
+            user = user.Where(s => s.UserName.Contains(model.UserName) || s.EMailAddress.Contains(model.UserName));
             if (user.Count() != 0)
             {
                 if (user.First().Password == model.Password)
