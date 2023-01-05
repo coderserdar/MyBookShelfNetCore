@@ -148,3 +148,4 @@ C:\Users\serda\Documents\GitHub\MyBookShelfNetCore\SourceCode\MyBookShelf.Web\ob
 C:\Users\serda\Documents\GitHub\MyBookShelfNetCore\SourceCode\MyBookShelf.Web\obj\Debug\net6.0\ref\MyBookShelf.Web.dll
 C:\Users\serda\Documents\GitHub\MyBookShelfNetCore\SourceCode\MyBookShelf.Web\bin\Debug\net6.0\MyBookShelf.Data.dll
 C:\Users\serda\Documents\GitHub\MyBookShelfNetCore\SourceCode\MyBookShelf.Web\bin\Debug\net6.0\MyBookShelf.Data.pdb
+C:\Users\serda\Documents\GitHub\MyBookShelfNetCore\SourceCode\MyBookShelf.Web\bin\Debug\net6.0\System.Security.Permissions.dll

@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBookShelf.Data.Services;
+using MyBookShelf.Web.Helpers;
 using MyBookShelf.Web.Models;
 
 namespace MyBookShelf.Web.Controllers;
 
+[NoDirectAccess]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -16,6 +18,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        ViewBag.Message = HttpContext.Session.GetString("ActiveUserName");
         return View();
     }
 
@@ -40,12 +43,25 @@ public class HomeController : Controller
                     cryptoPassword = Helpers.CryptoOperations.CalculateSHA256((model.Password)).ToLower();
                 var result = userService.UserLogin(model.UserName, cryptoPassword);
                 // return Json(new SpecialJsonResult() {IsError = false, MessageText = result});
-                if (!string.IsNullOrEmpty(result))
+                if (!string.IsNullOrEmpty(result.Id))
                 {
-                    model = new LoginViewModel();
-                    model.OperationMessage = result;
-                    ViewBag.Message = result;
-                    return View("Login", model);
+                    if (result.IsError)
+                    {
+                        model = new LoginViewModel();
+                        model.OperationMessage = result.Id;
+                        ViewBag.Message = result;
+                        return View("Login", model);
+                    }
+                    else
+                    {
+                        HttpContext.Session.Keys.ToList().Add("ActiveUserId");
+                        HttpContext.Session.SetString("ActiveUserId", result.ActiveUser.Id);
+                        HttpContext.Session.Keys.ToList().Add("ActiveUserIsAdmin");
+                        HttpContext.Session.SetString("ActiveUserIsAdmin", result.ActiveUser.IsAdmin ? "1" : "0");
+                        HttpContext.Session.Keys.ToList().Add("ActiveUserName");
+                        HttpContext.Session.SetString("ActiveUserName", result.ActiveUser.UserName);
+                        return RedirectToAction("Index");
+                    }
                 }
                 else
                     return RedirectToAction("Index");

@@ -17,7 +17,11 @@ public class Startup {
     
     public void ConfigureServices(IServiceCollection services) {
         services.AddEntityFrameworkSqlite().AddDbContext<DatabaseContext>();
+        services.AddSession(options => {  
+            options.IdleTimeout = TimeSpan.FromMinutes(10); 
+        });  
         services.AddRazorPages();
+        services.AddMvc();
     }
     
     public void Configure(WebApplication app, IWebHostEnvironment env) {
@@ -31,6 +35,7 @@ public class Startup {
         app.UseRouting();
         app.UseAuthorization();
         app.MapRazorPages();
+        app.UseSession();
         app.Run();
     }
 }
