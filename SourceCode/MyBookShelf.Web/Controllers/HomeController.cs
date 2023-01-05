@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyBookShelf.Business.Contexts;
 using MyBookShelf.Data.Services;
 using MyBookShelf.Web.Models;
 
@@ -10,8 +9,6 @@ namespace MyBookShelf.Web.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    public DatabaseContext _context;
-
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
@@ -27,21 +24,39 @@ public class HomeController : Controller
         var model = new LoginViewModel();
         return View(model);
     }
-    
+
+    [AllowAnonymous]
     [HttpPost]
-    public async Task<IActionResult> Login(LoginViewModel model)
+    [ValidateAntiForgeryToken]
+    public IActionResult Login(LoginViewModel model)
     {
-        if (ModelState.IsValid)
+        try
         {
-            var userService = new UserService();
-            var cryptoPassword = string.Empty;
-            if (!string.IsNullOrEmpty(model.Password))
-                cryptoPassword = Helpers.CryptoOperations.CalculateSHA256((model.Password)).ToLower();
-            var userExist = userService.UserExist(model.UserName, cryptoPassword);
-            if (userExist)
-                return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                var userService = new UserService();
+                var cryptoPassword = string.Empty;
+                if (!string.IsNullOrEmpty(model.Password))
+                    cryptoPassword = Helpers.CryptoOperations.CalculateSHA256((model.Password)).ToLower();
+                var result = userService.UserLogin(model.UserName, cryptoPassword);
+                // return Json(new SpecialJsonResult() {IsError = false, MessageText = result});
+                if (!string.IsNullOrEmpty(result))
+                {
+                    model = new LoginViewModel();
+                    model.OperationMessage = result;
+                    ViewBag.Message = result;
+                    return View("Login", model);
+                }
+                else
+                    return RedirectToAction("Index");
+            }
+            else
+                return RedirectToAction("Error");
         }
-        return RedirectToAction("Error");
+        catch (Exception e)
+        {
+            return RedirectToAction("Error");
+        }
     }
 
     public IActionResult Privacy()

@@ -10,6 +10,7 @@ public class LoginViewModel
     [DataType(DataType.Password)]
     [Display(Name = "Password")]
     public string Password { get; init; }
+    public string? OperationMessage { get; set; }
 
     public LoginViewModel()
     {
