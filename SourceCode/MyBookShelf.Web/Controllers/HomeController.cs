@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBookShelf.Business.Contexts;
+using MyBookShelf.Data.Services;
 using MyBookShelf.Web.Models;
 
 namespace MyBookShelf.Web.Controllers;
@@ -30,18 +31,15 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
-        _context = new DatabaseContext();
         if (ModelState.IsValid)
         {
-            var user = from m in _context.Users select m;
-            user = user.Where(s => s.UserName.Contains(model.UserName) || s.EMailAddress.Contains(model.UserName));
-            if (user.Count() != 0)
-            {
-                if (user.First().Password == model.Password)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
+            var userService = new UserService();
+            var cryptoPassword = string.Empty;
+            if (!string.IsNullOrEmpty(model.Password))
+                cryptoPassword = Helpers.CryptoOperations.CalculateSHA256((model.Password)).ToLower();
+            var userExist = userService.UserExist(model.UserName, cryptoPassword);
+            if (userExist)
+                return RedirectToAction("Index");
         }
         return RedirectToAction("Error");
     }

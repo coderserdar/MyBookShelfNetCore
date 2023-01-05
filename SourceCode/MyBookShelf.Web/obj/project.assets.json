@@ -512,6 +512,19 @@
         "runtime": {
           "bin/placeholder/MyBookShelf.Business.dll": {}
         }
+      },
+      "MyBookShelf.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MyBookShelf.Business": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MyBookShelf.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyBookShelf.Data.dll": {}
+        }
       }
     }
   },
@@ -1376,12 +1389,18 @@
       "type": "project",
       "path": "../MyBookShelf.Business/MyBookShelf.Business.csproj",
       "msbuildProject": "../MyBookShelf.Business/MyBookShelf.Business.csproj"
+    },
+    "MyBookShelf.Data/1.0.0": {
+      "type": "project",
+      "path": "../MyBookShelf.Data/MyBookShelf.Data.csproj",
+      "msbuildProject": "../MyBookShelf.Data/MyBookShelf.Data.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.1",
-      "MyBookShelf.Business >= 1.0.0"
+      "MyBookShelf.Business >= 1.0.0",
+      "MyBookShelf.Data >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1417,6 +1436,9 @@
           "projectReferences": {
             "C:\\Users\\serda\\Documents\\GitHub\\MyBookShelfNetCore\\SourceCode\\MyBookShelf.Business\\MyBookShelf.Business.csproj": {
               "projectPath": "C:\\Users\\serda\\Documents\\GitHub\\MyBookShelfNetCore\\SourceCode\\MyBookShelf.Business\\MyBookShelf.Business.csproj"
+            },
+            "C:\\Users\\serda\\Documents\\GitHub\\MyBookShelfNetCore\\SourceCode\\MyBookShelf.Data\\MyBookShelf.Data.csproj": {
+              "projectPath": "C:\\Users\\serda\\Documents\\GitHub\\MyBookShelfNetCore\\SourceCode\\MyBookShelf.Data\\MyBookShelf.Data.csproj"
             }
           }
         }

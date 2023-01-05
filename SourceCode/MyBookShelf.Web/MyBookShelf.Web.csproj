@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MyBookShelf.Business\MyBookShelf.Business.csproj" />
+      <ProjectReference Include="..\MyBookShelf.Data\MyBookShelf.Data.csproj" />
     </ItemGroup>
 
 </Project>

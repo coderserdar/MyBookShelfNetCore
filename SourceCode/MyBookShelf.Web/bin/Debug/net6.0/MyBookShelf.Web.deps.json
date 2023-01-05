@@ -9,7 +9,8 @@
       "MyBookShelf.Web/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.1",
-          "MyBookShelf.Business": "1.0.0"
+          "MyBookShelf.Business": "1.0.0",
+          "MyBookShelf.Data": "1.0.0"
         },
         "runtime": {
           "MyBookShelf.Web.dll": {}
@@ -416,6 +417,14 @@
         "runtime": {
           "MyBookShelf.Business.dll": {}
         }
+      },
+      "MyBookShelf.Data/1.0.0": {
+        "dependencies": {
+          "MyBookShelf.Business": "1.0.0"
+        },
+        "runtime": {
+          "MyBookShelf.Data.dll": {}
+        }
       }
     }
   },
@@ -636,6 +645,11 @@
       "hashPath": "system.text.json.7.0.0.nupkg.sha512"
     },
     "MyBookShelf.Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MyBookShelf.Data/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
