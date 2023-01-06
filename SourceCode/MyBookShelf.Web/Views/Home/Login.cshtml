@@ -1,7 +1,7 @@
 ﻿@model MyBookShelf.Web.Models.LoginViewModel
 @{
-    ViewData["Title"] = "My Book Shelf App";
-    ViewBag.Header = "My Book Shelf App";
+    ViewData["Title"] = "Login Page";
+    ViewBag.Header = "Login Page";
     Layout = "_Layout";
 }
 
@@ -11,6 +11,31 @@
 <script type="text/javascript" src="~/js/notifications.js"></script>
 <link rel="stylesheet" href="~/css/lobibox.css" asp-append-version="true"/>
 <link rel="stylesheet" href="~/css/notificationMessage.css" asp-append-version="true"/>
+
+@* <script> *@
+@*     function Register() *@
+@*     { *@
+@*         $.ajax({ *@
+@*             type: "GET", *@
+@*             url: "/Home/Register", *@
+@*             datatype: "Json", *@
+@*             success: function (data) { *@
+@*                 $('body').append($('<div id="divRegisterPopup"></div>')); *@
+@*                 $("#divRegisterPopup").html(data); *@
+@*                 $('#frmRegister').modal('show'); *@
+@*                 $("#loading").hide(); *@
+@*                 event.preventDefault(); *@
+@*                 return false; *@
+@*             }, *@
+@*             error: function (error) { *@
+@*                 $("#loading").hide(); *@
+@*                 Lobibox.notify('error', { size: 'large', msg: "Register Popup Screen Opening Has Been Failed" }); *@
+@*                 event.preventDefault(); *@
+@*                 return false; *@
+@*             } *@
+@*         }); *@
+@*     } *@
+@* </script> *@
 
 <html>
 <head>
@@ -24,7 +49,7 @@
         <h5 class="bg-primary text-white text-center m-2 p-2">@ViewBag.Header</h5>
         <div class="row m-1">
             <div class="col-3">
-                <label asp-for="UserName" class="d-flex justify-content-end align-items-end pe-3" style="font-weight: bold">@Model.UserName</label>
+                <label asp-for="UserName" class="form-label" style="font-weight: bold">@Model.UserName</label>
             </div>
             <div class="col-9">
                 <input asp-for="UserName" class="form-control" id="txtUserName"/>
@@ -38,7 +63,7 @@
         </div>
         <div class="row m-1">
             <div class="col-3">
-                <label asp-for="Password" class="d-flex justify-content-end align-items-end pe-3" style="font-weight: bold">@Model.Password</label>
+                <label asp-for="Password" class="form-label" style="font-weight: bold">@Model.Password</label>
             </div>
             <div class="col-9">
                 <input asp-for="Password" class="form-control" id="txtPassword" type="password"/>
@@ -51,7 +76,7 @@
             </div>
         </div>
         <div class="row m-1">
-            <div class="col-8"></div>
+            <div class="col-6"></div>
             @* This is used to go back to the main page *@
             <div class="col-2">
                 <a asp-controller="Home" asp-action="Login">
@@ -59,7 +84,15 @@
                 </a>
             </div>
             <div class="col-2">
-                <button class="btn btn-primary" type="submit" id="btnSearch">Login</button>
+                <a asp-controller="Home" asp-action="Register">
+                    <input type="button" class="btn btn-dark" value="Register"/>
+                </a>
+            </div>
+            @* <div class="col-2"> *@
+            @*     <button class="btn btn-dark" type="button" id="btnRegister" onclick="Register()">Register</button> *@
+            @* </div> *@
+            <div class="col-2">
+                <button class="btn btn-primary" type="submit" id="btnLogin">Login</button>
             </div>
         </div>
     </form>

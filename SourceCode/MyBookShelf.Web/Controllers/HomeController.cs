@@ -57,8 +57,10 @@ public class HomeController : Controller
                 {
                     if (result.IsError)
                     {
-                        model = new LoginViewModel();
-                        model.OperationMessage = result.Id;
+                        model = new LoginViewModel
+                        {
+                            OperationMessage = result.Id
+                        };
                         ViewBag.Message = result;
                         return View("Login", model);
                     }
@@ -81,6 +83,78 @@ public class HomeController : Controller
                     }
                 }
                 return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error");
+        }
+        catch (Exception e)
+        {
+            return RedirectToAction("Error");
+        }
+    }
+    
+    public IActionResult Register()
+    {
+        #region Session Operations
+        if (HttpContext.Session.Keys.ToList().Any(j => j == "ActiveUserId"))
+            HttpContext.Session.SetString("ActiveUserId", "");
+        else
+        {
+            HttpContext.Session.Keys.ToList().Add("ActiveUserId");
+            HttpContext.Session.SetString("ActiveUserId", ""); 
+        }
+        #endregion
+        var model = new RegisterViewModel();
+        return View(model);
+    }
+    
+    [AllowAnonymous]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Register(RegisterViewModel model)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Password != model.PasswordAgain)
+                {
+                    ViewBag.Message = "Passwords Must Be Same";
+                    ViewBag.MessageType = "error";
+                    model = new RegisterViewModel();
+                    return View(model);
+                }
+                else
+                {
+                    var userService = new UserService();
+                    var result = userService.UserExist(model.EMailAddress);
+                    if (result)
+                    {
+                        ViewBag.Message = "User already exists";
+                        ViewBag.MessageType = "error";
+                        model = new RegisterViewModel();
+                        return View(model);
+                    }
+                    else
+                    {
+                        var cryptoPassword = string.Empty;
+                        if (!string.IsNullOrEmpty(model.Password))
+                            cryptoPassword = Helpers.CryptoOperations.CalculateSHA256((model.Password)).ToLower();
+                        result = userService.UserSave(model.EMailAddress, cryptoPassword, false, true);
+                        if (result)
+                        {
+                            ViewBag.Message = "User has been added successfully";
+                            ViewBag.MessageType = "success";
+                            return RedirectToAction("Login");
+                        }
+                        else
+                        {
+                            ViewBag.Message = "There is an exception while registering user";
+                            ViewBag.MessageType = "error";
+                            model = new RegisterViewModel();
+                            return View(model);   
+                        }
+                    }
+                }
             }
             return RedirectToAction("Error");
         }

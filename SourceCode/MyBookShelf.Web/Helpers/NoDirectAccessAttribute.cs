@@ -20,7 +20,7 @@ public class NoDirectAccessAttribute : ActionFilterAttribute
     /// <param name="filterContext">Talep Yapılan Adres Bilgisini De İçeren Filtre Bilgisi</param>
     public override void OnActionExecuting(ActionExecutingContext filterContext)
     {
-        if (string.IsNullOrEmpty(filterContext.HttpContext.Session.GetString("ActiveUserId")) && (filterContext.Controller != "HomeController") && !filterContext.ActionDescriptor.DisplayName.Contains("Login"))
+        if (string.IsNullOrEmpty(filterContext.HttpContext.Session.GetString("ActiveUserId")) && (filterContext.Controller != "HomeController") && (!filterContext.ActionDescriptor.DisplayName.Contains("Login") && !filterContext.ActionDescriptor.DisplayName.Contains("Register")))
         {
             filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "Login" }));
         }

@@ -1,0 +1,89 @@
+﻿@model MyBookShelf.Web.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Register Page";
+    ViewBag.Header = "Register Page";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="~/js/notifications.js"></script>
+<link rel="stylesheet" href="~/css/lobibox.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/notificationMessage.css" asp-append-version="true"/>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Register</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body>
+<div style="text-align: center">
+    <form asp-action="Register" method="post" class="form-control-sm" style="align-content: center; width: 80vh; margin: auto" id="frmRegister">
+        <h5 class="bg-primary text-white text-center m-2 p-2">@ViewBag.Header</h5>
+        <div class="row m-1">
+            <div class="col-4">
+                <label asp-for="EMailAddress" class="form-label" style="font-weight: bold">@Model.EMailAddress</label>
+            </div>
+            <div class="col-8">
+                <input asp-for="EMailAddress" class="form-control" id="txtEMailAddress"/>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4">
+                <label asp-for="Password" class="form-label" style="font-weight: bold">@Model.Password</label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Password" class="form-control" id="txtPassword" type="password"/>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4"></div>
+            <div class="col-8">
+                <span asp-validation-for="Password" class="text-danger" style="font-weight: bold"></span>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4">
+                <label asp-for="PasswordAgain" class="form-label" style="font-weight: bold">@Model.PasswordAgain</label>
+            </div>
+            <div class="col-8">
+                <input asp-for="PasswordAgain" class="form-control" id="txtPasswordAgain" type="password"/>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4"></div>
+            <div class="col-8">
+                <span asp-validation-for="PasswordAgain" class="text-danger" style="font-weight: bold"></span>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-6"></div>
+            @* This is used to go back to the main page *@
+            <div class="col-2">
+                <a asp-controller="Home" asp-action="Register">
+                    <input type="button" class="btn btn-danger" value="Clean"/>
+                </a>
+            </div>
+            <div class="col-2">
+                <a asp-controller="Home" asp-action="Login">
+                    <input type="button" class="btn btn-dark" value="Go Back"/>
+                </a>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary" type="submit" id="btnRegister">Register</button>
+            </div>
+        </div>
+    </form>
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript" lang="javascript">
+            Lobibox.notify('warning', { size: 'normal', msg: '@ViewBag.Message' });
+        </script>
+    }
+</div>
+<br/>
+<br/>
+</body>
+</html>
