@@ -24,7 +24,7 @@
         <h5 class="bg-primary text-white text-center m-2 p-2">@ViewBag.Header</h5>
         <div class="row m-1">
             <div class="col-3">
-                <label asp-for="UserName" class="d-flex justify-content-end align-items-end pe-3">@Model.UserName</label>
+                <label asp-for="UserName" class="d-flex justify-content-end align-items-end pe-3" style="font-weight: bold">@Model.UserName</label>
             </div>
             <div class="col-9">
                 <input asp-for="UserName" class="form-control" id="txtUserName"/>
@@ -38,7 +38,7 @@
         </div>
         <div class="row m-1">
             <div class="col-3">
-                <label asp-for="Password" class="d-flex justify-content-end align-items-end pe-3">@Model.Password</label>
+                <label asp-for="Password" class="d-flex justify-content-end align-items-end pe-3" style="font-weight: bold">@Model.Password</label>
             </div>
             <div class="col-9">
                 <input asp-for="Password" class="form-control" id="txtPassword" type="password"/>
