@@ -24,6 +24,15 @@ public class HomeController : Controller
 
     public IActionResult Login()
     {
+        #region Session Operations
+        if (HttpContext.Session.Keys.ToList().Any(j => j == "ActiveUserId"))
+            HttpContext.Session.SetString("ActiveUserId", "");
+        else
+        {
+            HttpContext.Session.Keys.ToList().Add("ActiveUserId");
+            HttpContext.Session.SetString("ActiveUserId", ""); 
+        }
+        #endregion
         var model = new LoginViewModel();
         return View(model);
     }
@@ -54,12 +63,19 @@ public class HomeController : Controller
                     }
                     else
                     {
-                        HttpContext.Session.Keys.ToList().Add("ActiveUserId");
-                        HttpContext.Session.SetString("ActiveUserId", result.ActiveUser.Id);
+                        #region Session Operations
+                        if (HttpContext.Session.Keys.ToList().Any(j => j == "ActiveUserId"))
+                            HttpContext.Session.SetString("ActiveUserId", result.ActiveUser.Id);
+                        else
+                        {
+                            HttpContext.Session.Keys.ToList().Add("ActiveUserId");
+                            HttpContext.Session.SetString("ActiveUserId", result.ActiveUser.Id);  
+                        }
                         HttpContext.Session.Keys.ToList().Add("ActiveUserIsAdmin");
                         HttpContext.Session.SetString("ActiveUserIsAdmin", result.ActiveUser.IsAdmin ? "1" : "0");
                         HttpContext.Session.Keys.ToList().Add("ActiveUserName");
                         HttpContext.Session.SetString("ActiveUserName", result.ActiveUser.UserName);
+                        #endregion
                         return RedirectToAction("Index");
                     }
                 }
