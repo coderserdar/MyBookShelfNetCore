@@ -6,7 +6,7 @@ namespace MyBookShelf.Data.Services;
 
 public class UserService
 {
-    public DatabaseContext _context;
+    private readonly DatabaseContext _context;
     
     public UserService()
     {
@@ -24,16 +24,18 @@ public class UserService
     
     public Result UserLogin(string userName, string password)
     {
-        var result = new Result();
-        result.IsError = true;
-        result.ActiveUser = null;
+        var result = new Result
+        {
+            IsError = true,
+            ActiveUser = null
+        };
         var userList = from m in _context.Users select m;
         userList = userList.Where(s => (s.UserName.Equals(userName) || s.EMailAddress.Equals(userName)) && !s.IsDeleted);
         if (!userList.Any())
             result.Id = "There is no user with this user name";
         else
         {
-            userList = userList.Where(s => (s.Password.Equals(password)));    
+            userList = userList.Where(s => s.Password.Equals(password));    
             if (!userList.Any())
                 result.Id = "Password is wrong";
             else

@@ -31,7 +31,7 @@ namespace MyBookShelf.Web.Helpers
         private static string MessageClass => "Lobibox.notify";
         private static string MessageType { get; set; }
 
-        public static JavaScriptResult Goster(MessageSettings messageSettings)
+        public static JavaScriptResult ShowMessage(MessageSettings messageSettings)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace MyBookShelf.Web.Helpers
             }
         }
 
-        public static JavaScriptResult Goster(string messageHeader, string message, MessageTypeEnum messageType)
+        public static JavaScriptResult ShowMessage(string messageHeader, string message, MessageTypeEnum messageType)
         {
             var messageSettings = new MessageSettings
             {
@@ -78,7 +78,7 @@ namespace MyBookShelf.Web.Helpers
                 Message = message,
                 MessageType = messageType
             };
-            return Goster(messageSettings);
+            return ShowMessage(messageSettings);
         }
     }
 
