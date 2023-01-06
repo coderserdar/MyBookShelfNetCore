@@ -18,7 +18,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        ViewBag.Message = HttpContext.Session.GetString("ActiveUserName");
+        if (HttpContext.Session.Keys.ToList().Any(j => j == "ActiveUserName"))
+            ViewBag.Message = HttpContext.Session.GetString("ActiveUserName");
         return View();
     }
 
@@ -79,11 +80,9 @@ public class HomeController : Controller
                         return RedirectToAction("Index");
                     }
                 }
-                else
-                    return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Error");
+            return RedirectToAction("Error");
         }
         catch (Exception e)
         {

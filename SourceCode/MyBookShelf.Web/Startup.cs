@@ -9,10 +9,8 @@ public class Startup {
     
     public Startup(IConfiguration configuration) {
         configRoot = configuration;
-        using(var client = new DatabaseContext())
-        {
-            client.Database.EnsureCreated();
-        }
+        using var client = new DatabaseContext();
+        client.Database.EnsureCreated();
     }
     
     public void ConfigureServices(IServiceCollection services) {
